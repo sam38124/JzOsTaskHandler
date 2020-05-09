@@ -4,7 +4,7 @@
 這是一套非常簡單使用的IOS任務處理框架~~
 覺得好用就順手STAR吧!!
 
-[android版本](https://github.com/sam38124/JzFrameWork)
+[android版本](https://github.com/sam38124/JzTaskHandler)
 ## 目錄
 * [如何導入到專案](#Import)
 * [任務處理](#Use)
