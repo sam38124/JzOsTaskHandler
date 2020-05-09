@@ -12,7 +12,7 @@ open class TaskHandler:callback{
     var clockinstance=JzClock()
     var runtag=[String]()
     var runnerTimer=[TimerTask]()
-    static func newInstance()->callback{
+    public static func newInstance()->callback{
         if(instance==nil){
             instance=TaskHandler()
         }
