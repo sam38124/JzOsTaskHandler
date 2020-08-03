@@ -74,7 +74,7 @@ var time=clock.stop()
 ```
 <a name="All"></a>
 ### 所有對外暴露的方法
-```kotlin
+```swift
 
 protocol callback{
          //取得碼表
