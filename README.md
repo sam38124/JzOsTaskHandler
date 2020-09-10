@@ -69,23 +69,23 @@ var time=clock.stop()
 ### All protocol function
 ```swift
 public protocol callback{
-       //取得碼表
+       //Get Stopwatch
        func clock()->JzClock
-       //執行任務處理，並且同時間只能處理一次任務，必須等任務處理完才能進行下次的執行
+       //Start a task if not finish can't run new one 
        func runTaskOnce(_ tag:String,_ runner:@escaping()->Void)
-       //執行任務處理，並且必須大於時間間隔才可以再次執行
+       //If you need to start a new task, the interval from the previous task must be greater than the input value
        func runTaskDelay(_ tag:String,_ time:Double,_ runner:@escaping()->Void)
-       //執行任務處理，並且限制可同時執行數量
+       //Perform task processing and limit the number of simultaneous executions
        func runTaskMultiple(_ tag:String,_ count:Int,_ runner:@escaping()->Void)
-       //開始執行timer，如沒有此tag則開始新任務，反之則不進行新任務處理
+       //Start to execute the timer, if there is no such tag, a new task will be started, otherwise, no new task will be processed
        func runTaskTimer(_ tag:String,_ delay:Double,_ runner:@escaping()->Void)
-       //關閉timer的任務處理
+       //Turn off timer task processing
        func closeTimer(_ tag:String)
-       //將任務儲存於佇列當中
+       //Store tasks in a queue
        func storeTask(tag:String,_ runner:@escaping()->Void)
-       //執行所有tag相同的佇列
+       //Execute the same queue for all tags
        func runTaskMultipe(tag:String)
-       //執行儲存的佇列只執行最後添加的
+       //Execute the stored queue only execute the last added
        func executeOne(tag:String)
 }
 
@@ -105,3 +105,4 @@ public protocol callback{
 +  ##### line:sam38124<br /> 
 
 +  ##### gmail:sam38124@gmail.com
+
