@@ -95,7 +95,6 @@ open class TaskHandler:callback{
         let timerTask=Task(tag: tag, runner: runner)
         runnerTask.append(timerTask)
         runner()
-        runnerTask=runnerTask.filter({$0.objectId != timerTask.objectId})
     }
     
     open func runTaskMultiple(_ tag: String, _ count: Int, _ runner: @escaping () -> Void) {
