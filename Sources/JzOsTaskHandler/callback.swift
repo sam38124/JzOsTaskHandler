@@ -17,7 +17,7 @@ public protocol callback{
        //執行任務處理，並且限制可同時執行數量
        func runTaskMultiple(_ tag:String,_ count:Int,_ runner:@escaping()->Void)
        //開始執行timer，如沒有此tag則開始新任務，反之則不進行新任務處理
-       func runTaskTimer(_ tag:String,_ delay:Double,_ runner:@escaping()->Void)->TimerClass
+       func runTaskTimer(_ tag:String,_ delay:Double,_ runner:@escaping (_ timer:TimerClass) -> Void) -> TimerClass
        //關閉timer的任務處理
        func closeTimer(_ tag:String)
        //將任務儲存於佇列當中

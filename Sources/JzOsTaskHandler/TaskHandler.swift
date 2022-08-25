@@ -47,12 +47,12 @@ open class TaskHandler:callback{
         }
         
     }
-    public func runTaskTimer(_ tag: String, _ delay: Double, _ runner:@escaping () -> Void) -> TimerClass {
+    public func runTaskTimer(_ tag: String, _ delay: Double, _ runner:@escaping (_ timer:TimerClass) -> Void) -> TimerClass {
         if(timer.filter({ $0.tag==tag }).count==0){
             let timerClass=TimerClass()
             timerClass.tag=tag
             timerClass.timer=Timer.scheduledTimer(withTimeInterval: delay, repeats: true, block: {_ in
-                runner()
+                runner(timerClass)
             })
             timer.append(timerClass)
             return timerClass
@@ -63,7 +63,6 @@ open class TaskHandler:callback{
     
     var timer=[TimerClass]()
     static var instance:callback? = nil
-    var clockinstance=JzClock()
     var runnerTask=[Task]()
     public static func getInstance()->callback{
         if(instance==nil){
@@ -73,7 +72,7 @@ open class TaskHandler:callback{
         return instance!
     }
     open func clock() -> JzClock {
-        return clockinstance
+        return JzClock()
     }
     
     open func runTaskOnce(_ tag: String, _ runner: @escaping () -> Void) {
@@ -128,11 +127,14 @@ open class Task{
         self.runner = runner
         self.objectId=Task.objectId
        }
-    func clearInterVal(){
+    open func clearInterVal(){
         TaskHandler.getInstance().closeTimer(tag)
     }
 }
 open class TimerClass{
-    var timer:Timer? = nil
-    var tag = ""
+    open var timer:Timer? = nil
+    open var tag = ""
+    open func clearInterVal(){
+        TaskHandler.getInstance().closeTimer(tag)
+    }
 }
